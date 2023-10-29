@@ -1,0 +1,218 @@
+{
+  "permissions": [
+    {
+      "id": 1,
+      "name": "Get all users",
+      "method": "GET",
+      "url": "/^\\/api\\/users$/"
+    },
+    {
+      "id": 2,
+      "name": "Get one user",
+      "method": "GET",
+      "url": "/^\\/api\\/users\\/\\d+$/"
+      
+    },
+    {
+      "id": 3,
+      "name": "Create user",
+      "method": "POST",
+      "url": "/^\\/api\\/users$/"
+    },
+    {
+      "id": 4,
+      "name": "Update User",
+      "method": "PUT",
+      "url": "/^\\/api\\/users\\/\\d+$/"
+    },
+    {
+      "id": 5,
+      "name": "Delete user",
+      "method": "DELETE",
+      "url": "/^\\/api\\/users\\/\\d+$/"
+    },
+
+    {
+      "id": 6,
+      "name": "Get all books",
+      "method": "GET",
+      "url": "/^\\/api\\/books$/"
+    },
+    {
+      "id": 7,
+      "name": "Get one book",
+      "method": "GET",
+      "url": "/^\\/api\\/books\\/\\d+$/"
+    },
+    {
+      "id": 8,
+      "name": "Create book",
+      "method": "POST",
+      "url": "/^\\/api\\/books$/"
+    },
+    {
+      "id": 9,
+      "name": "Update book",
+      "method": "PUT",
+      "url": "/^\\/api\\/books\\/\\d+$/"
+    },
+    {
+      "id": 10,
+      "name": "Delete book",
+      "method": "DELETE",
+      "url": "/^\\/api\\/books\\/\\d+$/"
+    },
+
+    {
+      "id": 11,
+      "name": "Get all roles",
+      "method": "GET",
+      "url": "/^\\/api\\/roles$/"
+    },
+    {
+      "id": 12,
+      "name": "Get one ole",
+      "method": "GET",
+      "url": "/^\\/api\\/roles\\/\\d+$/"
+    },
+    {
+      "id": 13,
+      "name": "Create role",
+      "method": "POST",
+      "url": "/^\\/api\\/roles$/"
+    },
+    {
+      "id": 14,
+      "name": "Update role",
+      "method": "PUT",
+      "url": "/^\\/api\\/roles\\/\\d+$/"
+    },
+    {
+      "id": 15,
+      "name": "Delete role",
+      "method": "DELETE",
+      "url": "/^\\/api\\/roles\\/\\d+$/"
+    },
+
+    {
+      "id": 16,
+      "name": "Loan book",
+      "method": "POST",
+      "url": "/^\\/api\\/books\\/loan$/"
+    },
+    {
+      "id": 17,
+      "name": "Return book",
+      "method": "PUT",
+      "url": "/^\\/api\\/books\\/return$/"
+    },
+
+    {
+      "id": 18,
+      "name": "Grant user",
+      "method": "POST",
+      "url": "/^\\/api\\/user\\/\\d+\\/grant$/"
+    },
+    {
+      "id": 19,
+      "name": "Valid books",
+      "method": "PUT",
+      "url": "/^\/api\\/books\/\\d+\\/validate$/"
+    },
+    {
+      "id": 20,
+      "name": "Reject books",
+      "method": "POST",
+      "url": "/^\\/api\\/books\\/\\d+/reject$/"
+    },
+    {
+      "id": 21,
+      "name": "Add permissions to role",
+      "method": "POST",
+      "url": "/^\\/api\\/roles\\/\\d+\\/permissions$/"
+    },
+    {
+      "id": 22,
+      "name": "Remove permissions to role",
+      "method": "PUT",
+      "url": "/^\\/api\\/roles\\/\\d+\\/permissions$/"
+    },
+    {
+      "id": 23,
+      "name": "Add role to user",
+      "method": "POST",
+      "url": "/^\\/api\\/users\\/\\d+\\/roles$/"
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin",
+      "permissions": [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
+        19, 20, 21, 22, 23
+      ]
+    },
+    {
+      "id": 2,
+      "name": "author",
+      "permissions": [6, 7, 8, 9, 10, 16, 17]
+    },
+    {
+      "id": 3,
+      "name": "user",
+      "permissions": [6, 11, 12, 16, 17]
+    }
+  ],
+  "users": [
+    {
+      "id": 2,
+      "firstname": "Author",
+      "lastname": "FirstAuthor",
+      "email": "author@stone.com",
+      "password": "Author*1"
+    },
+    {
+      "id": 3,
+      "firstname": "User eee",
+      "lastname": "SimpleUser",
+      "email": "user@stone.com",
+      "password": "User*1"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Les étoiles de midi",
+      "isbn": "656564566",
+      "quantity": 2,
+      "resume": "Bertille est DRH. Épanouie dans son travail, elle est enfermée dans son couple. Victime de harcèlement « matrimonial », elle tente de se défaire des serres de son époux pervers. Militaire de métier, son mari qu’elle surnomme l’Ex la surveille, planque devant son bureau, installe des mouchards dans son ordinateur, cache ses affaires dans le but de la faire passer pour folle.",
+      "isValid": true,
+      "status": true,
+      "publishedAt": "2023-04-19T22:55:51.987Z",
+      "authorId": 2
+    },
+    {
+      "id": 2,
+      "title": "Sur la route de grandeLine",
+      "isbn": "7428465654",
+      "quantity": 3,
+      "resume": "Lorsque l’Ex invite son supérieur à dîner, Bertille oscille entre fou rire et désespoir, ce chapitre est une des bouffées d’oxygène qui émaillent la noirceur du roman. Bertille est à bout, mais pas encore assez pour réagir ou fuir, elle ne veut pas faire de peine à ses enfants. La douleur de ceux qu’elle aime lui est plus insupportable que la sienne.",
+      "isValid": true,
+      "status": true,
+      "publishedAt": "2023-04-19T22:55:51.987Z",
+      "authorId": 2
+    },
+    {
+      "id": 3,
+      "title": "Minato Namikaze le héros du village",
+      "isbn": "1747525242",
+      "quantity": 1,
+      "resume": "Reconnue au travail, Bertille est chargée de mener un plan social en Belgique visant la fermeture d’un site industriel. Elle accomplit cette mission humainement difficile.",
+      "isValid": true,
+      "status": true,
+      "publishedAt": "2023-04-19T22:55:51.987Z",
+      "authorId": 2
+    }
+  ]
+}

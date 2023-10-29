@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model Permission {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
+  method String @db.VarChar(255)
+  url String @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  roles RolePermissions[]
+}
+
+model RolePermissions {
+  permission Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
+  role Role @relation(fields: [roleId], references: [id])
+  roleId Int
+  assignedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([permissionId, roleId])
+}
+
+model Role {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255) @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  permissions RolePermissions[]
+  users UserRoles[]
+}
+
+model UserRoles {
+  role Role @relation(fields: [roleId], references: [id])
+  roleId Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  assignedAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@id([roleId, userId])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstname String @db.VarChar(255)
+  lastname String @db.VarChar(255)
+  email String @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //RELATIONS
+  roles UserRoles[]
+  books Book[]
+  loans Loan[]
+
+}
+
+model Book {
+  id Int @id @default(autoincrement())
+  title String @db.VarChar(255) @unique
+  isbn String @db.VarChar(13) @unique
+  quantity Int @default(1)
+  resume String   
+  isValid Boolean @default(false)
+  publishedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //RELATIONS
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
+  //RELATIONS
+  loans Loan[]
+  
+}
+
+model Loan {
+  id Int @id @default(autoincrement())
+  loanAt DateTime @default(now())
+  supposedReturnAt DateTime 
+  returnAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  //RELATIONS
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  book Book @relation(fields: [bookId], references: [id])
+  bookId Int
+}
+
+
+
